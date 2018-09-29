@@ -9,16 +9,6 @@ RSpec.describe MoviesController, type: :controller do
     end
   end
 
-  describe "show first movie" do
-    let(:movie) { FactoryBot.create(:movie) }
-
-    it "has a 200 status code" do
-      params = { id: movie.id }
-      get :show, params: params
-      expect(response.status).to eq(200)
-    end
-  end
-
   describe "create new movie" do
     it "has a created status code 201" do
       params = { 
@@ -30,6 +20,16 @@ RSpec.describe MoviesController, type: :controller do
                 }
       post :create, params: params
       expect(response.status).to eq(201)
+    end
+  end
+
+  describe "show first movie" do
+    let(:movie) { FactoryBot.create(:movie) }
+
+    it "has a 200 status code" do
+      params = { id: movie.id }
+      get :show, params: params
+      expect(response.status).to eq(200)
     end
   end
 
