@@ -3,8 +3,7 @@ class CommentsController < ApplicationController
   before_action :comment, only: [:show, :update, :destroy]
 
   def index
-    @comments = Comment.all
-    json_response(@comments)
+    json_response(@movie.comments)
   end
 
   def show

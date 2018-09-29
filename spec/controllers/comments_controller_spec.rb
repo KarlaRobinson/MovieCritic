@@ -1,10 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe CommentsController, type: :controller do
-  
-  describe "index comments" do
-    let(:movie) { FactoryBot.create(:movie) }
+  let(:movie) { FactoryBot.create(:movie) }
+  let(:comment) { FactoryBot.create(:comment, 
+                                    subject: "First try.", 
+                                    movie_id: movie.id) 
+                }
 
+  describe "index comments" do
     it "has a 200 status code" do
       params = { movie_id: movie.id }
       get :index, params: params
@@ -13,9 +16,7 @@ RSpec.describe CommentsController, type: :controller do
   end
 
   describe "create new comment" do
-    let(:movie) { FactoryBot.create(:movie) }
-
-    it "has a created status code 201" do
+    it "has a created status code 201 and 1 comment" do
       params = { 
                   subject: "Highly recommendable movie", 
                   body: "
@@ -26,25 +27,20 @@ RSpec.describe CommentsController, type: :controller do
                 }
       post :create, params: params
       expect(response.status).to eq(201)
+      expect(Movie.find(movie.id).comments.length).to eq(1)
     end
   end
 
   describe "show first comment of movie" do
-    let(:movie) { FactoryBot.create(:movie) }
-    let(:comment) { FactoryBot.create(:comment, movie_id: movie.id) }
-
     it "has a 200 status code" do
       params = { movie_id: movie.id, id: comment.id }
       get :show, params: params
       expect(response.status).to eq(200)
+      expect(response.body).to eq(comment.to_json)
     end
   end
 
   describe "update comment" do
-    let(:movie) { FactoryBot.create(:movie) }
-    let(:comment) { FactoryBot.create(:comment, subject: "First try.", movie_id: movie.id) }
-
-
     it "has original subject" do
       expect(comment.subject).to eq("First try.")
     end
@@ -57,10 +53,7 @@ RSpec.describe CommentsController, type: :controller do
     end
   end
 
-  describe "destroy first movie" do
-    let(:movie) { FactoryBot.create(:movie) }
-    let(:comment) { FactoryBot.create(:comment, movie_id: movie.id) }
-
+  describe "destroy first comment" do
     it "returns no content code 204" do
       params = { id: comment.id, movie_id: movie.id }
       delete :destroy, params: params
