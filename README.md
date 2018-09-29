@@ -35,6 +35,10 @@ curl -H "Content-type: application/json" \
         "rating": 5
        }' http://localhost:3000/movies/1
 
+### Get all Movies
+curl -H "Content-type: application/json" \
+     -X GET -d '{}' http://localhost:3000/movies
+
 ### Create an Actor
 curl -H "Content-type: application/json" \
      -X POST -d '{
@@ -56,5 +60,8 @@ curl -H "Content-type: application/json" \
 curl -H "Content-type: application/json" \
      -X POST -d '{
         "subject": "Cartoon depicting a mafia after the Tour-the-France",
-        "body": "Madame Souza, an elderly woman, instills in her grandson Champion (for who she acts as his guardian) a love of cycling. As a young man, he does become a dedicated road racer with his grandmother as his trainer. During a mountainous leg of the Tour de France in which Champion is racing, he goes missing. Evidence points to him being kidnapped. Indeed, he and two of his competitors were kidnapped, the kidnappers who want to use the threesome's unique skills for nefarious purposes. With Champion's overweight and faithful pet dog Bruno at her side, Madame Souza goes looking for Champion. Their trek takes them overseas to the town of Belleville. Without any money, Madame Souza and Bruno are befriended and taken in by three eccentric elderly women, who were once the renowned jazz singing group The Triplets of Belleville. The triplets help Madame Souza and Bruno try to locate and rescue Champion."
-       }' http://localhost:3000/movies/1/comments
+        "body": "Madame Souza, an elderly woman, instills in her grandson Champion a love of cycling. As a young man, he does become a dedicated road racer with his grandmother as his trainer. During a mountainous leg of the Tour de France Champion goes missing. He and two other cyclists were kidnapped. The kidnappers want to use the three cyclists for nefarious purposes. With the overweight and faithful pet dog Bruno at her side, Madame Souza goes looking for Champion. Their trek takes them overseas to the town of Belleville. Madame Souza and Bruno are befriended and taken in by three eccentric elderly women, the renowned jazz group The Triplets of Belleville. They help Madame Souza and Bruno try to locate and rescue Champion."
+       }' http://localhost:3000/movies/3/comments
+
+
+
