@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe MoviesController, type: :controller do
+  let(:movie) { FactoryBot.create(:movie, title: "MyTitle") }
 
   describe "index movies" do
     it "has a 200 status code" do
@@ -24,18 +25,15 @@ RSpec.describe MoviesController, type: :controller do
   end
 
   describe "show first movie" do
-    let(:movie) { FactoryBot.create(:movie) }
-
     it "has a 200 status code" do
       params = { id: movie.id }
       get :show, params: params
       expect(response.status).to eq(200)
+      expect(response.body).to eq(movie.to_json)
     end
   end
 
   describe "update movie" do
-    let(:movie) { FactoryBot.create(:movie, title: "MyTitle") }
-
     it "has original title" do
       expect(movie.title).to eq("MyTitle")
     end
@@ -49,8 +47,6 @@ RSpec.describe MoviesController, type: :controller do
   end
 
   describe "destroy first movie" do
-    let(:movie) { FactoryBot.create(:movie) }
-
     it "returns no content code 204" do
       params = { id: movie.id }
       delete :destroy, params: params
