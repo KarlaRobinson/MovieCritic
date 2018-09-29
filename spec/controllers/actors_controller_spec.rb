@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe ActorsController, type: :controller do
+  let(:movie) { FactoryBot.create(:movie) }
+  let(:actor) { FactoryBot.create(:actor, name: "Karla", movie_id: movie.id) }
 
   describe "index actors" do
-    let(:movie) { FactoryBot.create(:movie) }
-
     it "has a 200 status code" do
       params = { movie_id: movie.id }
       get :index, params: params
@@ -13,9 +13,7 @@ RSpec.describe ActorsController, type: :controller do
   end
 
   describe "create new actor" do
-    let(:movie) { FactoryBot.create(:movie) }
-
-    it "has a created status code 201" do
+    it "has a created status code 201 and 1 comment" do
       params = { 
                   name: "Karla Robinson", 
                   role: "protagonist",
@@ -23,25 +21,20 @@ RSpec.describe ActorsController, type: :controller do
                 }
       post :create, params: params
       expect(response.status).to eq(201)
+      expect(Movie.find(movie.id).actors.length).to eq(1)
     end
   end
 
   describe "show first actor of movie" do
-    let(:movie) { FactoryBot.create(:movie) }
-    let(:actor) { FactoryBot.create(:actor, movie_id: movie.id) }
-
     it "has a 200 status code" do
       params = { movie_id: movie.id, id: actor.id }
       get :show, params: params
       expect(response.status).to eq(200)
+      expect(response.body).to eq(actor.to_json)
     end
   end
 
   describe "update actor" do
-    let(:movie) { FactoryBot.create(:movie) }
-    let(:actor) { FactoryBot.create(:actor, name: "Karla", movie_id: movie.id) }
-
-
     it "has original name" do
       expect(actor.name).to eq("Karla")
     end
@@ -54,10 +47,7 @@ RSpec.describe ActorsController, type: :controller do
     end
   end
 
-  describe "destroy first movie" do
-    let(:movie) { FactoryBot.create(:movie) }
-    let(:actor) { FactoryBot.create(:actor, movie_id: movie.id) }
-
+  describe "destroy first actor" do
     it "returns no content code 204" do
       params = { id: actor.id, movie_id: movie.id }
       delete :destroy, params: params

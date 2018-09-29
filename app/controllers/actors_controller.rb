@@ -3,8 +3,7 @@ class ActorsController < ApplicationController
   before_action :actor, only: [:show, :update, :destroy]
 
   def index
-    @actors = Actor.all
-    json_response(@actors)
+    json_response(@movie.actors)
   end
 
   def show
