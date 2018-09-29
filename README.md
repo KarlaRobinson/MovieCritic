@@ -12,7 +12,7 @@ Movie descriptions include the movie title, genre, actors, director, prod_year a
 * Rails version
 5.2.1
 
-* Run the test suite: $bundel exec rspec
+* Run the test suite: $bundle exec rspec
 
 * Deploy by lifting the rails server: $rails s
 
