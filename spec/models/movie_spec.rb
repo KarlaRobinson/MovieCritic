@@ -7,7 +7,7 @@ RSpec.describe Movie, type: :model do
 
   describe ':title' do
     it { is_expected.to validate_presence_of(:title) }
-    it { is_expected.to validate_length_of(:title).is_at_most(50) }
+    it { is_expected.to validate_length_of(:title).is_at_most(100) }
   end
 
   describe ':genre' do
@@ -19,7 +19,7 @@ RSpec.describe Movie, type: :model do
 
   describe ':director' do
     it { is_expected.to validate_presence_of(:director) }
-    it { is_expected.to validate_length_of(:director).is_at_most(50) }
+    it { is_expected.to validate_length_of(:director).is_at_most(100) }
   end
 
   describe ':prod_year' do

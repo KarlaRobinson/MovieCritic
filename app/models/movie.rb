@@ -1,10 +1,10 @@
 class Movie < ApplicationRecord
-  belongs_to :user
+  # belongs_to :user
   has_many :actors
   has_many :comments
 
 
-  validates :title, :director, presence: true, :length => { maximum: 50 }
+  validates :title, :director, presence: true, :length => { maximum: 100 }
 
   validates_presence_of :genre, :prod_year, :rating
   validates_inclusion_of :genre, in: %w(comedy drama international romcom horro suspense classic)
