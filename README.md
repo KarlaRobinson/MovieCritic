@@ -4,7 +4,7 @@ Users can add movies, rate their movies on a scale of 1-5, and add comments on a
 
 To create an account, users must provide their name, email and birthday.
 
-Movie descriptions include the movie title, genre, cast, director, prod_year and rating, as well, as a comment section.
+Movie descriptions include the movie title, genre, actors, director, prod_year and rating, as well, as a comment section.
 
 * Ruby version
 2.4.0
