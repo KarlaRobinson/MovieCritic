@@ -42,7 +42,7 @@ RSpec.describe MoviesController, type: :controller do
       params = { id: movie.id, title: "NewTitle" }
       put :update, params: params
       expect(response.status).to eq(204)
-      expect(Movie.find(movie.id).title).to eq("NewTitle")
+      expect(movie.reload.title).to eq("NewTitle")
     end
   end
 

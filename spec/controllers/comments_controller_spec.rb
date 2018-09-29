@@ -27,7 +27,7 @@ RSpec.describe CommentsController, type: :controller do
                 }
       post :create, params: params
       expect(response.status).to eq(201)
-      expect(Movie.find(movie.id).comments.length).to eq(1)
+      expect(movie.reload.comments.length).to eq(1)
     end
   end
 
@@ -49,7 +49,7 @@ RSpec.describe CommentsController, type: :controller do
       params = { id: comment.id, movie_id: movie.id, subject: "Updated subject." }
       put :update, params: params
       expect(response.status).to eq(204)
-      expect(Comment.find(comment.id).subject).to eq("Updated subject.")
+      expect(comment.reload.subject).to eq("Updated subject.")
     end
   end
 

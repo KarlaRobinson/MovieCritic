@@ -21,7 +21,7 @@ RSpec.describe ActorsController, type: :controller do
                 }
       post :create, params: params
       expect(response.status).to eq(201)
-      expect(Movie.find(movie.id).actors.length).to eq(1)
+      expect(movie.reload.actors.length).to eq(1)
     end
   end
 
@@ -43,7 +43,7 @@ RSpec.describe ActorsController, type: :controller do
       params = { id: actor.id, movie_id: movie.id, name: "Karla Robinson" }
       put :update, params: params
       expect(response.status).to eq(204)
-      expect(Actor.find(actor.id).name).to eq("Karla Robinson")
+      expect(actor.reload.name).to eq("Karla Robinson")
     end
   end
 
