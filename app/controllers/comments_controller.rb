@@ -11,8 +11,9 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = @movie.comments.create!(comment_params)
-    json_response(@comment, :created)
+    raise params.inspect
+    # @comment = @movie.comments.create!(comment_params)
+    # json_response(@comment, :created)
   end
 
   def update

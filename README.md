@@ -18,15 +18,26 @@ Movie descriptions include the movie title, genre, actors, director, prod_year a
 
 ## Usage examples
 
+### Retrieve JWT token
+curl -H "Content-Type: application/json" \
+    -X POST -d '{
+    "email":"example@mail.com",
+    "password":"123123123"
+    }' http://localhost:3000/authenticate
+
+
 ### Create a Movie
-curl -H "Content-type: application/json" \
+curl -H "Authorization: YOUR_SECRET_JWT" \
      -X POST -d '{
         "title": "Triplets of Belleville",
         "genre": "drama",
         "director": "Sylvain Chomet",
-        "prod_year": "2003",
+        "prod_year": 2003,
         "rating": 3
        }' http://localhost:3000/movies
+
+Movie.create!(title: 'Triplets of Belleville' , genre: 'drama' , director: 'Sylvain Chomet', prod_year: 2003, rating: 3)
+
 
 ### Update a Movie
 curl -H "Content-type: application/json" \
@@ -36,11 +47,11 @@ curl -H "Content-type: application/json" \
        }' http://localhost:3000/movies/1
 
 ### Get all Movies
-curl -H "Content-type: application/json" \
+curl -H "Authorization: YOUR_SECRET_JWT" \
      -X GET -d '{}' http://localhost:3000/movies
 
 ### Create an Actor
-curl -H "Content-type: application/json" \
+curl -H "Authorization: YOUR_SECRET_JWT" \
      -X POST -d '{
         "name": "Monica Viegas",
         "role": "voice of Madame Souza"
@@ -57,7 +68,7 @@ curl -H "Content-type: application/json" \
      -X DELETE -d '{}' http://localhost:3000/movies/1/actors/2
 
 ### Create a Comment
-curl -H "Content-type: application/json" \
+curl -H "Authorization: YOUR_SECRET_JWT" \
      -X POST -d '{
         "subject": "Cartoon depicting a mafia after the Tour-the-France",
         "body": "Madame Souza, an elderly woman, instills in her grandson Champion a love of cycling. As a young man, he does become a dedicated road racer with his grandmother as his trainer. During a mountainous leg of the Tour de France Champion goes missing. He and two other cyclists were kidnapped. The kidnappers want to use the three cyclists for nefarious purposes. With the overweight and faithful pet dog Bruno at her side, Madame Souza goes looking for Champion. Their trek takes them overseas to the town of Belleville. Madame Souza and Bruno are befriended and taken in by three eccentric elderly women, the renowned jazz group The Triplets of Belleville. They help Madame Souza and Bruno try to locate and rescue Champion."
