@@ -11,10 +11,10 @@ RSpec.describe Movie, type: :model do
   end
 
   describe ':genre' do
-    let(:genres) { %w(comedy drama international romcom horror suspense classic) }
+    genre_list = Movie.genre
 
     it { is_expected.to validate_presence_of(:genre) }
-    it { is_expected.to validate_inclusion_of(:genre).in_array(genres) }
+    it { is_expected.to validate_inclusion_of(:genre).in_array(genre_list) }
   end
 
   describe ':director' do
@@ -25,12 +25,17 @@ RSpec.describe Movie, type: :model do
   describe ':prod_year' do
     it { is_expected.to validate_presence_of(:prod_year) }
     it { is_expected.to validate_numericality_of(:prod_year).is_greater_than_or_equal_to(1870) }
-    it { is_expected.to validate_numericality_of(:prod_year).is_less_than(2019) }
+    it { is_expected.to validate_numericality_of(:prod_year).is_less_than_or_equal_to(Time.current.year) }
   end
 
   describe ':rating' do
     it { is_expected.to validate_presence_of(:rating) }
     it { is_expected.to validate_inclusion_of(:rating).in_array( [1, 2, 3, 4, 5] ) }
+  end
+
+  describe 'nullify dependents when destroy' do
+    it { is_expected.to have_many(:comments).dependent(:nullify) }
+    it { is_expected.to have_many(:comments).dependent(:nullify) }
   end
 end
 

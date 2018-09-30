@@ -4,7 +4,7 @@ RSpec.describe User, type: :model do
   
   it { is_expected.to have_many(:movies) }
 
-  describe 'name' do
+  describe ':name' do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_length_of(:name).is_at_most(100) }
 
@@ -12,11 +12,21 @@ RSpec.describe User, type: :model do
     it { is_expected.to_not allow_value("Karla 4R").for(:name) }
   end
 
-  describe 'email' do
+  describe ':email' do
     it { is_expected.to validate_presence_of(:email) }
     it { is_expected.to validate_uniqueness_of(:email) }
     
     it { is_expected.to allow_value("email@addresse.foo").for(:email) }
     it { is_expected.to_not allow_value("foo").for(:email) }
+  end
+
+  describe ':password' do
+    it { is_expected.to validate_presence_of(:password) }
+    it { is_expected.to validate_length_of(:password).is_at_least(6) }
+    it { is_expected.to validate_length_of(:password).is_at_most(10) }
+  end
+
+  describe 'nullify dependents when destroy' do
+    it { is_expected.to have_many(:movies).dependent(:nullify) }
   end
 end

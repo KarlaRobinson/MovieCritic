@@ -51,6 +51,8 @@ RSpec.describe MoviesController, type: :controller do
   #     params = { id: movie.id }
   #     delete :destroy, params: params
   #     expect(response.status).to eq(204)
+  # expect { movie.destroy }.to change { Movie.count }.by(-1)
+
   #   end
   # end
 end
