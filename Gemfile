@@ -19,6 +19,11 @@ gem 'puma', '~> 3.11'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
+# used for Auth through JSON Web Token
+gem 'bcrypt', '~> 3.1.7'
+gem 'jwt'
+gem 'simple_command'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
