@@ -1,8 +1,7 @@
 class Movie < ApplicationRecord
-  # belongs_to :user
+  belongs_to :user
   has_many :actors
   has_many :comments
-
 
   validates :title, :director, presence: true, :length => { maximum: 100 }
 
