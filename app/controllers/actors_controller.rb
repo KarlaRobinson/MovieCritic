@@ -36,6 +36,6 @@ class ActorsController < ApplicationController
   end
 
   def movie
-    @movie ||= Movie.find(params[:movie_id])
+    @movie ||= current_user.movies.find(params[:movie_id]) if current_user
   end
 end

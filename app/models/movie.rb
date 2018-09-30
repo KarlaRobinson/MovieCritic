@@ -6,7 +6,8 @@ class Movie < ApplicationRecord
   validates :title, :director, presence: true, :length => { maximum: 100 }
 
   validates_presence_of :genre, :prod_year, :rating
-  validates_inclusion_of :genre, in: %w(comedy drama international romcom horro suspense classic)
+  validates_inclusion_of :genre, { in: %w(comedy drama international romcom horror suspense classic),
+    message: "must be comedy drama international romcom horror suspense or classic." }
   validates :prod_year, :numericality => { greater_than_or_equal_to: 1870, less_than: 2019 }
   validates_inclusion_of :rating, in: [1, 2, 3, 4, 5]
 end

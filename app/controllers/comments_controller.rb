@@ -32,10 +32,12 @@ class CommentsController < ApplicationController
   end
 
   def comment
-    @comment ||= @movie.comments.find(params[:id]) if @movie
+    if @current_user && @movie
+      @comment ||= @movie.comments.find(params[:id])
+    end
   end
 
   def movie
-    @movie ||= Movie.find(params[:movie_id])
+    @movie ||= current_user.movies.find(params[:movie_id]) if current_user
   end
 end

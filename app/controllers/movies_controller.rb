@@ -2,8 +2,7 @@ class MoviesController < ApplicationController
   before_action :movie, only: [:show, :update, :destroy]
 
   def index
-    @movies = Movie.all
-    json_response(@movies)
+    json_response(current_user.movies)
   end
 
   def show
@@ -11,7 +10,7 @@ class MoviesController < ApplicationController
   end
 
   def create
-    @movie = Movie.create!(movie_params)
+    @movie = current_user.movies.create!(movie_params)
     json_response(@movie, :created)
   end
 
@@ -32,6 +31,6 @@ class MoviesController < ApplicationController
   end
 
   def movie
-    @movie ||= Movie.find(params[:id])
+    @movie ||= current_user.movies.find(params[:id]) if current_user
   end
 end

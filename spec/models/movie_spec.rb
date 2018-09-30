@@ -11,7 +11,7 @@ RSpec.describe Movie, type: :model do
   end
 
   describe ':genre' do
-    let(:genres) { %w(comedy drama international romcom horro suspense classic) }
+    let(:genres) { %w(comedy drama international romcom horror suspense classic) }
 
     it { is_expected.to validate_presence_of(:genre) }
     it { is_expected.to validate_inclusion_of(:genre).in_array(genres) }
