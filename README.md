@@ -12,6 +12,8 @@ Movie descriptions include the movie title, genre, actors, director, prod_year, 
 * Rails version
 5.2.1
 
+* Run migrations: $rails db:migrate:seed
+
 * Run the test suite: $bundle exec rspec
 
 * Deploy by lifting the rails server: $rails s
