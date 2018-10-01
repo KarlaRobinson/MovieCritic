@@ -33,6 +33,7 @@ RSpec.describe ActorsController, type: :request do
       #GET /actors
       get '/movies/1/actors', params: params, headers: headers
       expect(response).to have_http_status(200)
+      expect(response.body).to eq(Actor.all.to_json)
 
       #GET /actors/1
       get '/movies/1/actors/1', headers: headers

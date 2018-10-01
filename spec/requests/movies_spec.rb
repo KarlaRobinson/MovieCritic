@@ -18,6 +18,7 @@ RSpec.describe MoviesController, type: :request do
       #GET /movies
       get '/movies', headers: headers
       expect(response).to have_http_status(200)
+      expect(response.body).to eq(Movie.all.to_json)
 
       #POST /movies
       params = { 

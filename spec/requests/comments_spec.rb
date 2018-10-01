@@ -34,6 +34,7 @@ RSpec.describe CommentsController, type: :request do
       #GET /comments
       get '/movies/1/comments', params: params, headers: headers
       expect(response).to have_http_status(200)
+      expect(response.body).to eq(Comment.all.to_json)
 
       #GET /comments/1
       get '/movies/1/comments/1', headers: headers
