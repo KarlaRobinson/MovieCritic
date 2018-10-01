@@ -12,7 +12,7 @@ Movie descriptions include the movie title, genre, actors, director, prod_year, 
 * Rails version
 5.2.1
 
-* Run migrations: $rails db:migrate:seed
+* Run migrations: $rails db:migrate ... rails db:seed
 
 * Run the test suite: $bundle exec rspec
 
@@ -22,14 +22,14 @@ Movie descriptions include the movie title, genre, actors, director, prod_year, 
 
 ## Usage examples
 
-### Retrieve JWT token
+### Retrieve JWT token (remember to db:seed the test user first!)
 curl -H "Content-Type: application/json" \
     -X POST -d '{
     "email":"example@mail.com",
     "password":"secret123"
     }' http://localhost:3000/authenticate
 
--> {"auth_token":"YOUR_SECRET_TOKEN"}
+--> {"auth_token":"YOUR_SECRET_TOKEN"}
 
 ### Create a Movie
 curl -X POST \
