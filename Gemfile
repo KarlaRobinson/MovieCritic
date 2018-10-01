@@ -25,7 +25,7 @@ gem 'jwt'
 gem 'simple_command'
 
 gem 'email_validator'
-gem 'rails-controller-testing'
+gem 'json'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
